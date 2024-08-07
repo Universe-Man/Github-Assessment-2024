@@ -18,7 +18,7 @@ class WebhooksController < ApplicationController
     @webhook.data = params
 
       if @webhook.save
-        WebhookJob.perform_later(@webhook)
+        WebhookJob.perform(@webhook)
         render json: { status: :ok }, status: :ok
       else
         render json: { errors: webhook.errors }, status: :unprocessable_entity
