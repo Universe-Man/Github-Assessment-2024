@@ -1,0 +1,185 @@
+Started GET "/" for 127.0.0.1 at 2024-08-07 12:20:05 -0700
+  [1m[35m (32.0ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /var/lib/gems/3.2.0/gems/railties-7.1.3.4/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /var/lib/gems/3.2.0/gems/railties-7.1.3.4/lib/rails/templates/rails/welcome/index.html.erb (Duration: 22.3ms | Allocations: 375)
+Completed 200 OK in 212ms (Views: 57.9ms | ActiveRecord: 0.0ms | Allocations: 7905)
+
+
+Started GET "/webhooks" for 127.0.0.1 at 2024-08-07 13:04:00 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [GET] "/webhooks"):
+  
+Started GET "/webhooks" for 127.0.0.1 at 2024-08-07 13:04:30 -0700
+Processing by WebhooksController#create as HTML
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 0.0ms | Allocations: 2015)
+
+
+  
+ActionView::MissingTemplate (Missing template webhooks/hello, application/hello with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :jbuilder]}.
+
+Searched in:
+  * "/home/ian-pollack/projects/Github-Assessment-2024/issue-detection/app/views"
+  * "/home/ian-pollack/.gem/gems/turbo-rails-2.0.6/app/views"
+  * "/var/lib/gems/3.2.0/gems/actiontext-7.1.3.4/app/views"
+  * "/var/lib/gems/3.2.0/gems/actionmailbox-7.1.3.4/app/views"
+):
+  
+app/controllers/webhooks_controller.rb:3:in `create'
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (13.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2024-08-07 20:53:54.792054', '2024-08-07 20:53:54.792058') RETURNING "key"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateWebhooks (20240807205232)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.7ms)[0m  [1m[35mCREATE TABLE "webhooks" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "source" varchar, "data" json, "message" varchar, "event" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240807205232') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/webhooks" for 127.0.0.1 at 2024-08-07 13:54:25 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by WebhooksController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering webhooks/index.html.erb within layouts/application
+  [1m[36mWebhook Load (0.1ms)[0m  [1m[34mSELECT "webhooks".* FROM "webhooks"[0m
+  ↳ app/views/webhooks/index.html.erb:6
+  Rendered webhooks/index.html.erb within layouts/application (Duration: 4.9ms | Allocations: 1301)
+  Rendered layout layouts/application.html.erb (Duration: 584.8ms | Allocations: 72655)
+Completed 200 OK in 1125ms (Views: 584.8ms | ActiveRecord: 2.3ms | Allocations: 82690)
+
+
+Started GET "/webhooks" for 127.0.0.1 at 2024-08-07 14:20:37 -0700
+Processing by WebhooksController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering webhooks/index.html.erb within layouts/application
+  [1m[36mWebhook Load (1.2ms)[0m  [1m[34mSELECT "webhooks".* FROM "webhooks"[0m
+  ↳ app/views/webhooks/index.html.erb:6
+  Rendered webhooks/index.html.erb within layouts/application (Duration: 40.9ms | Allocations: 4667)
+  Rendered layout layouts/application.html.erb (Duration: 41.2ms | Allocations: 4759)
+Completed 500 Internal Server Error in 47ms (ActiveRecord: 1.8ms | Allocations: 6315)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `new_webhook_path' for #<ActionView::Base:0x00000000015220>):
+    11:   <% end %>
+    12: </div>
+    13: 
+    14: <%= link_to "New webhook", new_webhook_path %>
+  
+app/views/webhooks/index.html.erb:14
+Started GET "/webhooks" for 127.0.0.1 at 2024-08-07 14:21:14 -0700
+Processing by WebhooksController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering webhooks/index.html.erb within layouts/application
+  [1m[36mWebhook Load (0.1ms)[0m  [1m[34mSELECT "webhooks".* FROM "webhooks"[0m
+  ↳ app/views/webhooks/index.html.erb:6
+  Rendered webhooks/index.html.erb within layouts/application (Duration: 3.7ms | Allocations: 1133)
+  Rendered layout layouts/application.html.erb (Duration: 6.4ms | Allocations: 2286)
+Completed 200 OK in 13ms (Views: 8.2ms | ActiveRecord: 1.3ms | Allocations: 3841)
+
+
+Started POST "/webhooks/github_pull_request" for 127.0.0.1 at 2024-08-07 14:24:06 -0700
+Processing by WebhooksController#create as */*
+  Parameters: {"message"=>"Ping", "event"=>"pull_request", "source"=>"github_pull_request"}
+Completed 400 Bad Request in 3ms (ActiveRecord: 0.0ms | Allocations: 994)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: webhook):
+  
+app/controllers/webhooks_controller.rb:47:in `webhook_params'
+app/controllers/webhooks_controller.rb:16:in `create'
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started POST "/webhooks/github_pull_request" for 127.0.0.1 at 2024-08-07 14:27:11 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by WebhooksController#create as */*
+  Parameters: {"message"=>"Ping", "event"=>"pull_request", "source"=>"github_pull_request"}
+Completed 400 Bad Request in 14ms (ActiveRecord: 0.0ms | Allocations: 6016)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: webhook):
+  
+app/controllers/webhooks_controller.rb:47:in `webhook_params'
+app/controllers/webhooks_controller.rb:16:in `create'
+Started POST "/webhooks/github_pull_request" for 127.0.0.1 at 2024-08-07 14:29:47 -0700
+Processing by WebhooksController#create as */*
+  Parameters: {"message"=>"Ping", "event"=>"pull_request", "source"=>"github_pull_request"}
+Completed 400 Bad Request in 2ms (ActiveRecord: 0.0ms | Allocations: 941)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: webhook):
+  
+app/controllers/webhooks_controller.rb:47:in `webhook_params'
+app/controllers/webhooks_controller.rb:16:in `create'
+Started POST "/webhooks/github_pull_request" for 127.0.0.1 at 2024-08-07 14:30:11 -0700
+Processing by WebhooksController#create as */*
+  Parameters: {"message"=>"Ping", "event"=>"pull_request", "source"=>"github_pull_request"}
+Completed 400 Bad Request in 1ms (ActiveRecord: 0.0ms | Allocations: 486)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: webhook):
+  
+app/controllers/webhooks_controller.rb:47:in `webhook_params'
+app/controllers/webhooks_controller.rb:16:in `create'
+Started GET "/webhooks" for 127.0.0.1 at 2024-08-07 14:30:45 -0700
+Processing by WebhooksController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering webhooks/index.html.erb within layouts/application
+  [1m[36mWebhook Load (0.1ms)[0m  [1m[34mSELECT "webhooks".* FROM "webhooks"[0m
+  ↳ app/views/webhooks/index.html.erb:6
+  Rendered webhooks/index.html.erb within layouts/application (Duration: 12.2ms | Allocations: 2330)
+  Rendered layout layouts/application.html.erb (Duration: 71.4ms | Allocations: 19504)
+Completed 200 OK in 94ms (Views: 72.8ms | ActiveRecord: 2.7ms | Allocations: 26347)
+
+
+Started GET "/webhooks" for 127.0.0.1 at 2024-08-07 14:34:31 -0700
+Processing by WebhooksController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering webhooks/index.html.erb within layouts/application
+  [1m[36mWebhook Load (0.1ms)[0m  [1m[34mSELECT "webhooks".* FROM "webhooks"[0m
+  ↳ app/views/webhooks/index.html.erb:6
+  Rendered webhooks/index.html.erb within layouts/application (Duration: 2.8ms | Allocations: 563)
+  Rendered layout layouts/application.html.erb (Duration: 7.9ms | Allocations: 1462)
+Completed 200 OK in 9ms (Views: 8.6ms | ActiveRecord: 0.1ms | Allocations: 1715)
+
+
+Started GET "/" for 127.0.0.1 at 2024-08-07 14:34:35 -0700
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /var/lib/gems/3.2.0/gems/railties-7.1.3.4/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /var/lib/gems/3.2.0/gems/railties-7.1.3.4/lib/rails/templates/rails/welcome/index.html.erb (Duration: 1.1ms | Allocations: 271)
+Completed 200 OK in 6ms (Views: 4.6ms | ActiveRecord: 0.0ms | Allocations: 983)
+
+
+Started GET "/plants" for 127.0.0.1 at 2024-08-07 14:34:38 -0700
+  
+ActionController::RoutingError (No route matches [GET] "/plants"):
+  
+Started GET "/webhooks" for 127.0.0.1 at 2024-08-07 14:34:42 -0700
+Processing by WebhooksController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering webhooks/index.html.erb within layouts/application
+  [1m[36mWebhook Load (0.1ms)[0m  [1m[34mSELECT "webhooks".* FROM "webhooks"[0m
+  ↳ app/views/webhooks/index.html.erb:6
+  Rendered webhooks/index.html.erb within layouts/application (Duration: 2.8ms | Allocations: 444)
+  Rendered layout layouts/application.html.erb (Duration: 6.6ms | Allocations: 1359)
+Completed 200 OK in 8ms (Views: 7.6ms | ActiveRecord: 0.1ms | Allocations: 1607)
+
+
+Started POST "/webhooks/github_pull_request" for 127.0.0.1 at 2024-08-07 14:34:51 -0700
+Processing by WebhooksController#create as */*
+  Parameters: {"message"=>"Ping", "event"=>"pull_request", "source"=>"github_pull_request"}
+Completed 400 Bad Request in 1ms (ActiveRecord: 0.0ms | Allocations: 485)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: webhook):
+  
+app/controllers/webhooks_controller.rb:47:in `webhook_params'
+app/controllers/webhooks_controller.rb:16:in `create'
