@@ -183,3 +183,302 @@ ActionController::ParameterMissing (param is missing or the value is empty: webh
   
 app/controllers/webhooks_controller.rb:47:in `webhook_params'
 app/controllers/webhooks_controller.rb:16:in `create'
+Started GET "/webhooks" for 127.0.0.1 at 2024-08-07 15:33:36 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by WebhooksController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering webhooks/index.html.erb within layouts/application
+  [1m[36mWebhook Load (0.1ms)[0m  [1m[34mSELECT "webhooks".* FROM "webhooks"[0m
+  ↳ app/views/webhooks/index.html.erb:6
+  Rendered webhooks/index.html.erb within layouts/application (Duration: 20.0ms | Allocations: 4134)
+  Rendered layout layouts/application.html.erb (Duration: 332.3ms | Allocations: 76398)
+Completed 200 OK in 380ms (Views: 338.1ms | ActiveRecord: 2.0ms | Allocations: 93134)
+
+
+Started GET "/webhooks/hello" for 127.0.0.1 at 2024-08-07 16:10:43 -0700
+Processing by WebhooksController#show as HTML
+  Parameters: {"id"=>"hello"}
+  [1m[36mWebhook Load (0.1ms)[0m  [1m[34mSELECT "webhooks".* FROM "webhooks" WHERE "webhooks"."id" = ? LIMIT ?[0m  [["id", nil], ["LIMIT", 1]]
+  ↳ app/controllers/webhooks_controller.rb:42:in `set_webhook'
+Completed 404 Not Found in 84ms (ActiveRecord: 5.3ms | Allocations: 8793)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Webhook with 'id'=hello):
+  
+app/controllers/webhooks_controller.rb:42:in `set_webhook'
+Started GET "/webhooks/:hello" for 127.0.0.1 at 2024-08-07 16:12:48 -0700
+Processing by WebhooksController#show as HTML
+  Parameters: {"id"=>":hello"}
+  [1m[36mWebhook Load (0.2ms)[0m  [1m[34mSELECT "webhooks".* FROM "webhooks" WHERE "webhooks"."id" = ? LIMIT ?[0m  [["id", nil], ["LIMIT", 1]]
+  ↳ app/controllers/webhooks_controller.rb:42:in `set_webhook'
+Completed 404 Not Found in 2ms (ActiveRecord: 0.1ms | Allocations: 840)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Webhook with 'id'=:hello):
+  
+app/controllers/webhooks_controller.rb:42:in `set_webhook'
+Started GET "/webhooks/" for 127.0.0.1 at 2024-08-07 16:17:00 -0700
+Processing by WebhooksController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering webhooks/index.html.erb within layouts/application
+  [1m[36mWebhook Load (0.1ms)[0m  [1m[34mSELECT "webhooks".* FROM "webhooks"[0m
+  ↳ app/views/webhooks/index.html.erb:6
+  Rendered webhooks/index.html.erb within layouts/application (Duration: 1.6ms | Allocations: 601)
+  Rendered layout layouts/application.html.erb (Duration: 3.3ms | Allocations: 1511)
+Completed 200 OK in 4ms (Views: 3.6ms | ActiveRecord: 0.1ms | Allocations: 1766)
+
+
+Started GET "/webhooks/" for 127.0.0.1 at 2024-08-07 16:17:41 -0700
+Processing by WebhooksController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering webhooks/index.html.erb within layouts/application
+  [1m[36mWebhook Load (0.1ms)[0m  [1m[34mSELECT "webhooks".* FROM "webhooks"[0m
+  ↳ app/views/webhooks/index.html.erb:7
+  Rendered webhooks/index.html.erb within layouts/application (Duration: 3.8ms | Allocations: 1139)
+  Rendered layout layouts/application.html.erb (Duration: 7.1ms | Allocations: 2280)
+Completed 200 OK in 12ms (Views: 7.4ms | ActiveRecord: 1.9ms | Allocations: 3836)
+
+
+  [1m[36mWebhook Load (0.2ms)[0m  [1m[34mSELECT "webhooks".* FROM "webhooks" /* loading for pp */ LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mWebhook Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "webhooks"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mWebhook Create (1.7ms)[0m  [1m[32mINSERT INTO "webhooks" ("id", "source", "data", "message", "event", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["id", 1], ["source", "hello"], ["data", nil], ["message", nil], ["event", nil], ["created_at", "2024-08-07 23:18:56.421287"], ["updated_at", "2024-08-07 23:18:56.421287"]]
+  [1m[36mTRANSACTION (21.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mWebhook Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "webhooks"[0m
+  [1m[36mWebhook Load (0.1ms)[0m  [1m[34mSELECT "webhooks".* FROM "webhooks" /* loading for pp */ LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mWebhook Update (0.4ms)[0m  [1m[33mUPDATE "webhooks" SET "data" = ?, "message" = ?, "event" = ?, "updated_at" = ? WHERE "webhooks"."id" = ?[0m  [["data", "\"beep\""], ["message", "boop"], ["event", "look!"], ["updated_at", "2024-08-07 23:19:46.660637"], ["id", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mcommit transaction[0m
+Started GET "/webhooks/" for 127.0.0.1 at 2024-08-07 16:19:57 -0700
+Processing by WebhooksController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering webhooks/index.html.erb within layouts/application
+  [1m[36mWebhook Load (0.8ms)[0m  [1m[34mSELECT "webhooks".* FROM "webhooks"[0m
+  ↳ app/views/webhooks/index.html.erb:6
+  Rendered webhooks/_webhook.html.erb (Duration: 0.6ms | Allocations: 267)
+  Rendered webhooks/index.html.erb within layouts/application (Duration: 32.1ms | Allocations: 12766)
+  Rendered layout layouts/application.html.erb (Duration: 34.2ms | Allocations: 13902)
+Completed 200 OK in 39ms (Views: 32.9ms | ActiveRecord: 3.4ms | Allocations: 15457)
+
+
+Started GET "/webhooks/1" for 127.0.0.1 at 2024-08-07 16:20:00 -0700
+Processing by WebhooksController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mWebhook Load (0.2ms)[0m  [1m[34mSELECT "webhooks".* FROM "webhooks" WHERE "webhooks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/webhooks_controller.rb:42:in `set_webhook'
+  Rendering layout layouts/application.html.erb
+  Rendering webhooks/show.html.erb within layouts/application
+  Rendered webhooks/_webhook.html.erb (Duration: 0.1ms | Allocations: 26)
+  Rendered webhooks/show.html.erb within layouts/application (Duration: 2.7ms | Allocations: 635)
+  Rendered layout layouts/application.html.erb (Duration: 6.2ms | Allocations: 1525)
+Completed 200 OK in 15ms (Views: 8.2ms | ActiveRecord: 0.2ms | Allocations: 2850)
+
+
+Started GET "/webhooks" for 127.0.0.1 at 2024-08-07 16:20:03 -0700
+Processing by WebhooksController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering webhooks/index.html.erb within layouts/application
+  [1m[36mWebhook Load (0.1ms)[0m  [1m[34mSELECT "webhooks".* FROM "webhooks"[0m
+  ↳ app/views/webhooks/index.html.erb:6
+  Rendered webhooks/_webhook.html.erb (Duration: 0.1ms | Allocations: 26)
+  Rendered webhooks/index.html.erb within layouts/application (Duration: 5.7ms | Allocations: 709)
+  Rendered layout layouts/application.html.erb (Duration: 8.6ms | Allocations: 1604)
+Completed 200 OK in 10ms (Views: 9.4ms | ActiveRecord: 0.1ms | Allocations: 1848)
+
+
+Started GET "/webhooks" for 127.0.0.1 at 2024-08-07 16:28:36 -0700
+Processing by WebhooksController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering webhooks/index.html.erb within layouts/application
+  [1m[36mWebhook Load (1.2ms)[0m  [1m[34mSELECT "webhooks".* FROM "webhooks"[0m
+  ↳ app/views/webhooks/index.html.erb:6
+  Rendered webhooks/_webhook.html.erb (Duration: 0.8ms | Allocations: 233)
+  Rendered webhooks/index.html.erb within layouts/application (Duration: 12.2ms | Allocations: 4287)
+  Rendered layout layouts/application.html.erb (Duration: 15.7ms | Allocations: 5437)
+Completed 200 OK in 20ms (Views: 16.0ms | ActiveRecord: 1.8ms | Allocations: 6998)
+
+
+Started GET "/webhooks/hello" for 127.0.0.1 at 2024-08-07 16:29:38 -0700
+Processing by WebhooksController#show as HTML
+  Parameters: {"id"=>"hello"}
+  [1m[36mWebhook Load (0.1ms)[0m  [1m[34mSELECT "webhooks".* FROM "webhooks" WHERE "webhooks"."id" = ? LIMIT ?[0m  [["id", nil], ["LIMIT", 1]]
+  ↳ app/controllers/webhooks_controller.rb:42:in `set_webhook'
+Completed 404 Not Found in 9ms (ActiveRecord: 5.6ms | Allocations: 2858)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Webhook with 'id'=hello):
+  
+app/controllers/webhooks_controller.rb:42:in `set_webhook'
+Started GET "/webhooks/1" for 127.0.0.1 at 2024-08-07 16:29:51 -0700
+Processing by WebhooksController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mWebhook Load (0.1ms)[0m  [1m[34mSELECT "webhooks".* FROM "webhooks" WHERE "webhooks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/webhooks_controller.rb:42:in `set_webhook'
+  Rendering layout layouts/application.html.erb
+  Rendering webhooks/show.html.erb within layouts/application
+  Rendered webhooks/_webhook.html.erb (Duration: 0.8ms | Allocations: 233)
+  Rendered webhooks/show.html.erb within layouts/application (Duration: 4.3ms | Allocations: 1007)
+  Rendered layout layouts/application.html.erb (Duration: 6.7ms | Allocations: 2137)
+Completed 200 OK in 15ms (Views: 8.8ms | ActiveRecord: 0.1ms | Allocations: 5953)
+
+
+Started GET "/webhooks" for 127.0.0.1 at 2024-08-07 16:29:56 -0700
+Processing by WebhooksController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering webhooks/index.html.erb within layouts/application
+  [1m[36mWebhook Load (0.2ms)[0m  [1m[34mSELECT "webhooks".* FROM "webhooks"[0m
+  ↳ app/views/webhooks/index.html.erb:6
+  Rendered webhooks/_webhook.html.erb (Duration: 0.2ms | Allocations: 26)
+  Rendered webhooks/index.html.erb within layouts/application (Duration: 5.2ms | Allocations: 939)
+  Rendered layout layouts/application.html.erb (Duration: 8.2ms | Allocations: 1834)
+Completed 200 OK in 10ms (Views: 8.8ms | ActiveRecord: 0.2ms | Allocations: 2165)
+
+
+Started GET "/webhooks/1" for 127.0.0.1 at 2024-08-07 16:29:57 -0700
+Processing by WebhooksController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mWebhook Load (0.2ms)[0m  [1m[34mSELECT "webhooks".* FROM "webhooks" WHERE "webhooks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/webhooks_controller.rb:42:in `set_webhook'
+  Rendering layout layouts/application.html.erb
+  Rendering webhooks/show.html.erb within layouts/application
+  Rendered webhooks/_webhook.html.erb (Duration: 2.9ms | Allocations: 26)
+  Rendered webhooks/show.html.erb within layouts/application (Duration: 4.4ms | Allocations: 449)
+  Rendered layout layouts/application.html.erb (Duration: 6.3ms | Allocations: 1339)
+Completed 200 OK in 9ms (Views: 7.2ms | ActiveRecord: 0.1ms | Allocations: 1924)
+
+
+Started GET "/webhooks" for 127.0.0.1 at 2024-08-07 16:29:58 -0700
+Processing by WebhooksController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering webhooks/index.html.erb within layouts/application
+  [1m[36mWebhook Load (0.1ms)[0m  [1m[34mSELECT "webhooks".* FROM "webhooks"[0m
+  ↳ app/views/webhooks/index.html.erb:6
+  Rendered webhooks/_webhook.html.erb (Duration: 0.1ms | Allocations: 26)
+  Rendered webhooks/index.html.erb within layouts/application (Duration: 5.3ms | Allocations: 745)
+  Rendered layout layouts/application.html.erb (Duration: 8.1ms | Allocations: 1640)
+Completed 200 OK in 10ms (Views: 9.0ms | ActiveRecord: 0.1ms | Allocations: 1884)
+
+
+Started GET "/webhooks" for 127.0.0.1 at 2024-08-07 16:30:23 -0700
+Processing by WebhooksController#index as HTML
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.0ms | Allocations: 538)
+
+
+  
+NameError (undefined local variable or method `byebug' for #<WebhooksController:0x0000000001c980>):
+  
+app/controllers/webhooks_controller.rb:7:in `index'
+Started GET "/webhooks" for 127.0.0.1 at 2024-08-07 16:31:29 -0700
+Processing by WebhooksController#index as HTML
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.0ms | Allocations: 481)
+
+
+  
+NameError (undefined local variable or method `byebug' for #<WebhooksController:0x0000000001ccc8>):
+  
+app/controllers/webhooks_controller.rb:7:in `index'
+Started GET "/webhooks" for 127.0.0.1 at 2024-08-07 16:31:45 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by WebhooksController#index as HTML
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.0ms | Allocations: 1399)
+
+
+  
+NameError (undefined local variable or method `byebug' for #<WebhooksController:0x0000000000a960>):
+  
+app/controllers/webhooks_controller.rb:7:in `index'
+Started GET "/webhooks" for 127.0.0.1 at 2024-08-07 16:33:11 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by WebhooksController#index as HTML
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.0ms | Allocations: 1401)
+
+
+  
+NoMethodError (undefined method `pry' for #<Binding:0x00007ddbdc53e748>):
+  
+app/controllers/webhooks_controller.rb:7:in `index'
+Started GET "/webhooks" for 127.0.0.1 at 2024-08-07 16:33:22 -0700
+Processing by WebhooksController#index as HTML
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.0ms | Allocations: 597)
+
+
+  
+NameError (undefined local variable or method `byebug' for #<WebhooksController:0x0000000000e2e0>):
+  
+app/controllers/webhooks_controller.rb:7:in `index'
+Started GET "/webhooks" for 127.0.0.1 at 2024-08-07 16:33:54 -0700
+  
+LoadError (cannot load such file -- byebug):
+  
+app/controllers/webhooks_controller.rb:1:in `<main>'
+Started GET "/webhooks" for 127.0.0.1 at 2024-08-07 16:37:04 -0700
+  
+LoadError (cannot load such file -- byebug):
+  
+app/controllers/webhooks_controller.rb:1:in `<main>'
+Started GET "/webhooks" for 127.0.0.1 at 2024-08-07 16:37:06 -0700
+  
+LoadError (cannot load such file -- byebug):
+  
+app/controllers/webhooks_controller.rb:1:in `<main>'
+Started GET "/webhooks" for 127.0.0.1 at 2024-08-07 16:37:30 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by WebhooksController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering webhooks/index.html.erb within layouts/application
+  [1m[36mWebhook Load (0.1ms)[0m  [1m[34mSELECT "webhooks".* FROM "webhooks"[0m
+  ↳ app/views/webhooks/index.html.erb:6
+  Rendered webhooks/_webhook.html.erb (Duration: 0.5ms | Allocations: 281)
+  Rendered webhooks/index.html.erb within layouts/application (Duration: 38.0ms | Allocations: 15318)
+  Rendered layout layouts/application.html.erb (Duration: 94.1ms | Allocations: 32219)
+Completed 200 OK in 10252ms (Views: 90.1ms | ActiveRecord: 7.3ms | Allocations: 108200)
+
+
+Started GET "/webhooks" for 127.0.0.1 at 2024-08-07 16:37:52 -0700
+Processing by WebhooksController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering webhooks/index.html.erb within layouts/application
+  [1m[36mWebhook Load (0.2ms)[0m  [1m[34mSELECT "webhooks".* FROM "webhooks"[0m
+  ↳ app/views/webhooks/index.html.erb:6
+  Rendered webhooks/_webhook.html.erb (Duration: 0.7ms | Allocations: 233)
+  Rendered webhooks/index.html.erb within layouts/application (Duration: 15.6ms | Allocations: 4844)
+  Rendered layout layouts/application.html.erb (Duration: 18.2ms | Allocations: 5986)
+Completed 200 OK in 3448ms (Views: 16.9ms | ActiveRecord: 3.4ms | Allocations: 9648)
+
+
+Started GET "/webhooks" for 127.0.0.1 at 2024-08-07 16:38:04 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by WebhooksController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering webhooks/index.html.erb within layouts/application
+  [1m[36mWebhook Load (0.1ms)[0m  [1m[34mSELECT "webhooks".* FROM "webhooks"[0m
+  ↳ app/views/webhooks/index.html.erb:6
+  Rendered webhooks/_webhook.html.erb (Duration: 0.6ms | Allocations: 281)
+  Rendered webhooks/index.html.erb within layouts/application (Duration: 37.5ms | Allocations: 15317)
+  Rendered layout layouts/application.html.erb (Duration: 90.3ms | Allocations: 32260)
+Completed 200 OK in 2140ms (Views: 92.9ms | ActiveRecord: 2.5ms | Allocations: 91310)
+
+
+Started GET "/webhooks" for 127.0.0.1 at 2024-08-07 16:38:14 -0700
+Processing by WebhooksController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering webhooks/index.html.erb within layouts/application
+  [1m[36mWebhook Load (0.1ms)[0m  [1m[34mSELECT "webhooks".* FROM "webhooks"[0m
+  ↳ app/views/webhooks/index.html.erb:6
+  Rendered webhooks/_webhook.html.erb (Duration: 0.7ms | Allocations: 233)
+  Rendered webhooks/index.html.erb within layouts/application (Duration: 13.0ms | Allocations: 4862)
+  Rendered layout layouts/application.html.erb (Duration: 15.4ms | Allocations: 6004)
+Completed 200 OK in 2476ms (Views: 16.7ms | ActiveRecord: 2.4ms | Allocations: 9650)
+
+
+Started POST "/webhook" for 127.0.0.1 at 2024-08-07 16:47:12 -0700
+  
+ActionController::RoutingError (No route matches [POST] "/webhook"):
+  
+Started POST "/webhook" for 127.0.0.1 at 2024-08-07 16:54:23 -0700
+  
+ActionController::RoutingError (No route matches [POST] "/webhook"):
+  

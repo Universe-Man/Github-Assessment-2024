@@ -16,7 +16,6 @@ class WebhooksController < ApplicationController
     @webhook = Webhook.new(webhook_params)
     @webhook.source = params[:source]
     @webhook.data = params
-    # @webhook.data = params.except(:controller, :action)
 
       if @webhook.save
         WebhookJob.perform_later(@webhook)
